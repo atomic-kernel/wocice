@@ -2,28 +2,35 @@
 #ifndef _LINUX_TYPES_H
 #define _LINUX_TYPES_H
 
-#ifndef __ASSEMBLY__
-
 #include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
 
-typedef uint8_t u8;
-typedef int8_t s8;
-typedef uint16_t u16;
-typedef int16_t s16;
-typedef uint32_t u32;
-typedef int32_t s32;
-typedef uint64_t u64;
-typedef int64_t s64;
+#include <uapi/linux/types.h>
+
+#ifndef __ASSEMBLY__
 
 #ifdef __SIZEOF_INT128__
-typedef __signed__ __int128 __s128 __attribute__((aligned(16)));
-typedef unsigned __int128 __u128 __attribute__((aligned(16)));
-
 typedef __s128 s128;
 typedef __u128 u128;
 #endif
+
+typedef u32 __kernel_dev_t;
+typedef __kernel_dev_t		dev_t;
+typedef u32			nlink_t;
+
+/* bsd */
+typedef unsigned char		u_char;
+typedef unsigned short		u_short;
+typedef unsigned int		u_int;
+typedef unsigned long		u_long;
+
+/* sysv */
+typedef unsigned char		unchar;
+typedef unsigned short		ushort;
+typedef unsigned int		uint;
+typedef unsigned long		ulong;
+typedef unsigned long long	ullong;
 
 struct list_head {
 	struct list_head *next, *prev;
